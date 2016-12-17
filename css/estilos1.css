@@ -1,0 +1,153 @@
+@charset "utf-8";
+
+/**
+* @modulo      Desarrollo de aplicaciones Web Entorno Sevidor
+* @Tema        Desarrollo de aplicaciones Web en PHP
+* @Tarea       4
+* @alumno      Felipe Rodríguez Gutiérrez
+*/
+
+html {
+    background-color: #e6e9e9;
+    background-image: -webkit-linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    background-image: linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    -webkit-font-smoothing: antialiased !important;
+}
+
+body {
+    margin: 0 auto;
+    padding: 2em 2em 4em;
+    max-width: 850px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    color: #545454;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+}
+
+#pie {
+    font-size: 0.5em;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.errcon {
+    margin-right: 3px;
+    margin-left: 3px;
+    border: 1px solid indianred;
+    color: indianred;
+    background-color: #ffcccc;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.perfect {
+    color: green;
+    text-align: center;
+}
+
+.privado {
+    text-align: justify;
+    color: #000099;
+}
+
+.publico {
+    text-align: justify;
+}
+
+.login, .control {
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.login-head, .control-head {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    background-color: #7f8eba;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.login-body, .control-body {
+    text-align: center;
+    padding: 5px;
+}
+
+.control-pane-menu {
+    text-align: center;
+}
+
+.control-pane-menu form, .control-pane-menu form button {
+    display: inline;
+}
+
+.control-foot {
+    text-align: center;
+}
+
+.campo {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.login-cuerpo-acceso {
+    text-align: center;
+}
+
+.login-cuerpo-acceso input, .pref-combo{
+    padding: 2px;
+    width: 248px;
+    font-size: 24px;
+    border: 1px solid #545454;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.msg-pane {
+    text-align: center;
+}
+
+.txt-pane {
+    width: 800px;
+    max-width: 800px;
+    height:80px;
+    border: 1px dotted #000099;
+}
+
+.btn, .control-pane-btn {
+    margin: 3px;
+    padding: 5px;
+    height: 40px;
+    font-weight: bold;
+    color: #ffffff;
+    border: 0;
+    border-bottom: 3px solid #4869e2;
+    background-color: #728cea;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 254px;
+}
+
+.control-pane-btn {
+    width: 154px;
+}
