@@ -101,7 +101,6 @@ Cada uno de los apartados se puntuarán siguiendo la siguiente plantilla:
 | Estructuración del código (uso de funciones, uso de páginas, inclusión de ficheros externos, documentación del código, variables intuitivas, optimización,…). | 0,2 |
 | Impresión general de la aplicación. | 1 |
 
-  |
 
 ## Recursos necesarios:
 
