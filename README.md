@@ -60,6 +60,7 @@ Por último, tienes que  **AUTO-EVALUARTE** , justificando si fuese necesario la
 | 10 |La tarea entregada y que funcione correctamente (que no corresponda a ninguno de los apartados mencionados anteriormente) será corregida según la siguiente valoración:|
 
 Cada uno de los apartados se puntuarán siguiendo la siguiente plantilla:
+
 | 1) Menú inicio. | Formulario usuario/contraseña | 0,1 |
 | --- | --- | --- |
 | Ocultar contraseña | 0,1 |
