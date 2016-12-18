@@ -100,6 +100,8 @@ Cada uno de los apartados se puntuarán siguiendo la siguiente plantilla:
 | Estructuración del código (uso de funciones, uso de páginas, inclusión de ficheros externos, documentación del código, variables intuitivas, optimización,…). | 0,2 |
 | Impresión general de la aplicación. | 1 |
 
+  |
+
 ## Recursos necesarios:
 
 Al menos será necesario tener instalado y configurado XAMPP con Apache y MySQL arrancados, y un editor para php, por ejemplo NetBeans o Notepad++
