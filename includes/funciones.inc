@@ -10,8 +10,8 @@
  * @global PDO $con conexión a la base de datos.
  */
 function conectar(){
-    $db_host = 'localhost';  //  hostname Por defecto: localhost 192.168.0.250 en red
-    $db_name = 'foro4';  //  databasename
+    $db_host = '192.168.0.250';  //  hostname Por defecto: localhost 192.168.0.250 en red
+    $db_name = 'foro3';  //  databasename
     $db_user = 'dwes';  //  username
     $user_pw = 'dwes';  //  password
 
@@ -48,7 +48,7 @@ function inicioSesion() {
 /*************************/
 
 /**
- * Formulario con un voton de regreso al index.php que puede ser utilizado como volver
+ * Formulario con un boton de regreso al index.php que puede ser utilizado como volver
  */
 function formularioRegreso() {
     ?>
