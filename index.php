@@ -11,7 +11,7 @@
     $error = acceso();
 ?>
 
-<?php include 'includes/header.inc';?>
+<?php include 'includes/header.inc'; //Encabezado de la página ?>
     
     <div class="login">
         <div class="login-head">LOGIN</div>

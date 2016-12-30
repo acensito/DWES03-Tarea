@@ -6,22 +6,8 @@
     }  
 ?>
 
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<head>
-    <meta charset="UTF-8">
-    <title>DWES - Tarea 4 - Felipe Rodríguez Gutiérrez</title>
-    <link type="text/css" href="css/<?php echo theme();?>.css" rel="stylesheet" />
-</head>
+<?php include 'includes/header.inc'; //Encabezado de la página ?>
 
-<body>
-    
-    <h1 class="centrado">TAREA 4: FORO DWES</h1>
-    <h2 class="centrado">Felipe Rodríguez Gutiérrez</h2>
         <div class="control">
             <div class="control-head">PANEL DE CONTROL</div>
             <div class='control-body'>

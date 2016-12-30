@@ -10,7 +10,7 @@
  * @global PDO $con conexión a la base de datos.
  */
 function conectar(){
-    $db_host = '192.168.0.250';  //  hostname Por defecto: localhost 192.168.0.250 en red
+    $db_host = 'localhost';  //  hostname Por defecto: localhost 192.168.0.250 en red
     $db_name = 'foro3';  //  databasename
     $db_user = 'dwes';  //  username
     $user_pw = 'dwes';  //  password
@@ -397,11 +397,12 @@ function seleccionPreferencias() {
  * @return string valor del theme a usar. Debe de existir en la carpeta css con el mismo nombre y especificados en el combobox de las preferencias
  */
 function theme() {
-    $user = $_SESSION['usuario']; //Si hay abierta una sesión de usuario...
-    if (isset($_COOKIE[$user])) { //Comprobamos que haya una cookie de usuario
-        $theme = $_COOKIE[$user]; //Obtenemos el valor del theme
-    } else { //En otro caso
-        $theme = "estilos"; //Se usa el valor por defecto
+    $theme = "estilos"; //Se usa el valor por defecto
+    if (isset($_SESSION['usuario'])){
+        $user = $_SESSION['usuario']; //Si hay abierta una sesión de usuario...
+        if (isset($_COOKIE[$user])) { //Comprobamos que haya una cookie de usuario
+            $theme = $_COOKIE[$user]; //Obtenemos el valor del theme que se haya establecido
+        }
     }
     return $theme; //Devolvemos el valor del theme
 }
