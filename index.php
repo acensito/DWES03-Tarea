@@ -50,5 +50,4 @@
         </div>    
     </div>
     
-    <div id="pie">Felipe Rodriguez Gutiérrez - DWES Tarea 4 - Curso 2015/2016</div>
-</html>
+<?php include 'includes/footer.inc'; //Pie de la página ?>

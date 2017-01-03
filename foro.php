@@ -16,6 +16,4 @@
         <?php msgUsuario(); ?>   
     </div>
     
-    <div id="pie">Felipe Rodriguez Gutiérrez - DWES Tarea 4 - Curso 2015/2016</div>
-</body>
-</html>
+<?php include 'includes/footer.inc'; //Pie de la página ?>

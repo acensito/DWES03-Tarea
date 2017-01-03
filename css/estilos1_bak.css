@@ -3,30 +3,31 @@
 /**
 * @modulo      Desarrollo de aplicaciones Web Entorno Sevidor
 * @Tema        Desarrollo de aplicaciones Web en PHP
-* @Tarea       3
+* @Tarea       4
 * @alumno      Felipe Rodríguez Gutiérrez
 */
 
 html {
-    -webkit-font-smoothing: antialiased !important;
     background-color: #e6e9e9;
+    background-image: -webkit-linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    background-image: linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    -webkit-font-smoothing: antialiased !important;
 }
 
 body {
-    background-color: #ffffff;
-    border-radius: 5px;
-    color: #545454;
+    margin: 0 auto;
+    padding: 2em 2em 4em;
+    max-width: 850px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5em;
-    margin: 2em auto;
-    max-width: 850px;
-    padding: 2em 2em 2em;
+    color: #545454;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
-footer {
-    font-size: 0.8em;
-    margin-bottom: 0.2px;
+#pie {
+    font-size: 0.5em;
     margin-top: 20px;
     text-align: center;
 }
@@ -52,40 +53,25 @@ footer {
     text-align: center;
 }
 
-.msg-header {
-    color: #ffffff;
-    background-color: #87a7b2;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin-bottom: 0;
-}
-
-.msg-publico, .msg-privado {
+.privado {
     text-align: justify;
-    margin-bottom: 0.5em;
-    padding: 1em;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    color: #000099;
 }
 
-.msg-privado {
-    background-color: #d5eeae;
-}
-
-.msg-publico {
-    background-color: #eed3ae;
+.publico {
+    text-align: justify;
 }
 
 .login, .control {
-    padding: 0;
+    padding: 0px;
     margin-top: 10px;
     margin-bottom: 3px;
     border: none;
     border-radius: 5px;
     background-color: #f6f6f6;
-    -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-    -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
 }
 
 .login-head, .control-head {
@@ -95,7 +81,7 @@ footer {
     font-weight: bold;
     text-align: center;
     color: #ffffff;
-    background-color: #87a7b2;
+    background-color: #7f8eba;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -153,8 +139,8 @@ footer {
     font-weight: bold;
     color: #ffffff;
     border: 0;
-    border-bottom: 3px solid #7cb872;
-    background-color: #9bc993;
+    border-bottom: 3px solid #4869e2;
+    background-color: #728cea;
     border-radius: 5px;
 }
 

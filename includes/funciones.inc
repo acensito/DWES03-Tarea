@@ -1,7 +1,8 @@
 <?php
 
-/* FUNCIONES BASES DE DATOS */
-/****************************/
+// ************************
+// FUNCIONES BASES DE DATOS 
+// ************************
 
 /**
  * Función que conectará con la base de datos. A modificar la IP por localhost 
@@ -10,10 +11,10 @@
  * @global PDO $con conexión a la base de datos.
  */
 function conectar(){
-    $db_host = 'localhost';  //  hostname Por defecto: localhost 192.168.0.250 en red
-    $db_name = 'foro3';  //  databasename
-    $db_user = 'dwes';  //  username
-    $user_pw = 'dwes';  //  password
+    $db_host = '192.168.0.250';  //  hostname por defecto: localhost - 192.168.0.250 en red
+    $db_name = 'foro3';          //  nombre base datos
+    $db_user = 'dwes';           //  usuario
+    $user_pw = 'dwes';           //  contraseña
 
     try {
         global $con; //Se realiza como variable global para tener la misma disponible en cualquier página
@@ -44,8 +45,9 @@ function inicioSesion() {
     }
 }
 
-/* FUNCIONES FORMULARIOS */
-/*************************/
+// *********************
+// FUNCIONES FORMULARIOS
+// *********************
 
 /**
  * Formulario con un boton de regreso al index.php que puede ser utilizado como volver
@@ -54,7 +56,7 @@ function formularioRegreso() {
     ?>
     <form action="index.php" method="post">
         <div class='login-botones'>
-            <button class="btn" type="submit" name="volver">Volver</button><br />
+            <button class="btn" type="submit" name="volver">Volver</button><br/>
         </div>
     </form>
     <?php
@@ -125,7 +127,7 @@ function panelControlInvitado() {
         <form action='tablon.php' method='post'>
             <button class="control-pane-btn" type="submit" name="tablon">Tablón</button>
         </form>
-        <?php salir(); ?>
+        <?php salir(); // Mostramos el botón salir?>
     </div>
     <?php
 }
@@ -187,47 +189,50 @@ function msgUsuario() {
     }
 }
 
-/* FUNCIONES DE CONTROL */
-/************************/
+// ********************
+// FUNCIONES DE CONTROL
+// ********************
 
 /**
  * Funcion para el registro de usuario nuevo
  */
 function registroUsuario(){
-    if (isset($_POST['registrarUsu'])) { //Si se ha pulsado el boton de registrar...
+    if (isset($_POST['registrarUsu'])) { // Si se ha pulsado el boton de registrar...
         
-        /* Recabamos los datos obtenidos por formulario */
+        // Recabamos los datos obtenidos por formulario
         $usuario = $_POST['usuario'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $password2 = $_POST['password2'];
         
-        /* Valida los datos recibidos, volcandolos en un flag de control*/
+        // Valida los datos recibidos, volcandolos en un flag de control
         $flag = validar_usuario($usuario, $password, $password2, $email);
         
-        if ($flag) { //Si el flag de control es negativo...
-            echo $flag; //Mostrará los errores obtenidos....
+        if ($flag) { // Si el flag de control es negativo...
+            echo $flag; // Mostrará los errores obtenidos....
             formularioRegistro($usuario, $email); //Muestra de nuevo el formulario con los datos introducidos para corregir
-        } else { //caso de que todo este correcto... 
+        } else { // Caso de que todo este correcto... 
             
-            /* Insertamos el usuario.
-             * Previamente encriptamos la clave facilitada por el usuario y asignamos el bloqueo a 1 (true, bloqueado) */
+            // Insertamos el usuario.
+            // Previamente encriptamos la clave facilitada por el usuario y asignamos el bloqueo a 1 (true, bloqueado)
             $password = crypt($password);
             $bloqueado = true;
             
-            try { //Preparamos la consulta
-           
+            try { 
+                // Preparamos la consulta con parámetros
                 $consulta = "INSERT INTO foreros (login, password, email, bloqueado) VALUES (:login, :pass, :email, :bloqueado)";
-
+                    
+                // Parámetros de la consulta
                 $resultado = $GLOBALS['con']->prepare($consulta);
                 $resultado->bindParam(":login", $usuario);
                 $resultado->bindParam(":pass", $password);
                 $resultado->bindParam(":email", $email);
                 $resultado->bindParam(":bloqueado", $bloqueado);
                 
-                $resultado->execute(); //Ejecutamos la consulta, añadimos el usuario
+                //Ejecutamos la consulta, añadimos el usuario
+                $resultado->execute();
 
-                echo "<p class='perfect'>Se ha creado el usuario " . $usuario . " correctamente</p>"; //Mensaje de feedback a mostrar...
+                echo "<p class='perfect'>Se ha creado el usuario " . $usuario . " correctamente</p>"; //Mensaje de feedback.
             } catch (PDOException $e) { //En caso de errores
                 echo "<div class='errcon'><p>Se ha producido error " . $e->getMessage() . "</p></div>"; //Se captura el error y se muestra
             }
@@ -252,17 +257,20 @@ function acceso() {
        
         if (empty($usuario)) { //Si el campo usuario esta vacio, se procede a devolver el correspondiente mensaje de error
             return $error = "<div class='errcon'><p>Debes introducir un nombre de usuario. Si no tienes usuario, puedes crearte uno registrandote o puedes acceder en modo invitado.</p></div>";
-//        } else if (empty($password)) { //Este campo es optativo, yo he tomado como un intento de error malo el loguearse sin meter clave alguna.
-//            return $error = "Debes de introducir una contraseña.";
+// Las siguientes lineas son optativas, tomado como un intento de error malo el loguearse sin meter clave alguna
+// De esta manera lo que se hace es comprobarse si se ha introducido una clave y si no, te obliga a introducir una.
+//      } else if (empty($password)) { 
+//          return $error = "Debes de introducir una contraseña.";
         } else { //En el caso de que haya introducido un usuario...
-            /*  Comprobamos las credenciales con la base de datos
-             *  Conectamos a la base de datos */
+            
+            // Conectamos a la base de datos
             conectar();
-
-            /* Ejecutamos la consulta para comprobar las credenciales */
+            
             try {
+                // Ejecutamos la consulta parametrizada para comprobar las credenciales
                 $consulta = "SELECT * FROM foreros WHERE login = :login";
-
+                
+                //Parametros de la consulta
                 $resultado = $GLOBALS['con']->prepare($consulta);
                 $resultado->bindParam(":login", $usuario);
                 $resultado->execute();
@@ -308,12 +316,10 @@ function acceso() {
                         return $error = "<div class='errcon'><p>No existe el usuario. Entre como invitado o registrese como usuario</p></div>";
                     } 
                 }
-
             } catch (PDOException $e) { //En el caso de obtener un error, se captura el mensaje y se muestra
                 echo "<div class='errcon'><p>Se ha producido error " . $e->getMessage() . "</p></div>";
             }
         }
-        
    } else if (isset($_POST['invitado'])) { //En el caso de pulsar el boton de invitado..
        $_SESSION['usuario'] = 'Invitado'; //Establecemos un usuario Invitado
        $_SESSION['hora'] = time(); //Establecemos su hora de conexion
@@ -321,7 +327,6 @@ function acceso() {
    } else { //En cualquier otro tipo de error
        return $error = "Introduzca un nombre de usuario y una contraseña o acceda como invitado"; //Mensaje de feedback
    }
-
 }
 
 /**
@@ -407,8 +412,9 @@ function theme() {
     return $theme; //Devolvemos el valor del theme
 }
 
-/* FUNCIONES DE MENSAJES */
-/*************************/
+// *********************
+// FUNCIONES DE MENSAJES
+// *********************
 
 /**
  * Función que muestra todos los mensajes, ya sean privados o públicos
@@ -427,20 +433,20 @@ function mensajesPrivados() {
     }
     
     /* Se prepara el acabado de la tabla a mostrar */
-    echo "<table class='msg-tbl'>";
+    //echo "<table class='msg-tbl'>";
     if ($resultado->rowCount() > 0) { //Si el numero de resultados es mayor que cero (existen resultados a mostrar)
         foreach ($resultado as $registro) { //Por cada resultado como un usuario...
-            echo "<tr><th>Escrito por: " . $registro['autor'] . " y enviado el dia " . $registro['fecha'] . "</th></tr>"; //Cabecero con los datos del usuaruio fecha de envio
+            echo "<div class='msg-header'>Escrito por: " . $registro['autor'] . " y enviado el dia " . $registro['fecha'] . "</div>"; //Cabecero con los datos del usuaruio fecha de envio
             if ($registro['privado'] == true) {
-                echo "<tr><td class='privado'>" . $registro['contenido'] . "</td></tr>"; //Si es privado tendrá un color
+                echo "<div class='msg-privado'>" . $registro['contenido'] . "</div>"; //Si es privado tendrá un color
             } else {
-                echo "<tr><td class='publico'>" . $registro['contenido'] . "</td></tr>"; //Si es publico tendra otro color
+                echo "<div class='msg-publico'>" . $registro['contenido'] . "</div>"; //Si es publico tendra otro color
             }
         }
-        echo "</table>"; //Cerramos la tabla
+        //echo "</table>"; //Cerramos la tabla
         
     } else { //En el caso de no existir elementos, lo indicamos
-        echo "<tr class='centrado'><td colspan='2'>No existen mensajes que visualizar</td></tr></table>"; //Mensaje de feedback
+        echo "<div class='centrado'>No existen mensajes que visualizar</div>"; //Mensaje de feedback
     }
 }
 
@@ -461,22 +467,20 @@ function mensajesPublicos() {
     }
     
     /* Se prepara el acabado de la tabla a mostrar */
-    echo "<table class='msg-tbl'>";
     if ($resultado->rowCount() > 0) { //Si el numero de resultados es mayor que cero (existen resultados a mostrar)
         foreach ($resultado as $registro) { //Ppor cada resultado como un usuario...
-            echo "<tr><th>Escrito por: " . $registro['autor'] . " y enviado el dia " . $registro['fecha'] . "</th></tr>"; //Cabecero con los datos del usuaruio fecha de envio
-            echo "<tr><td class='publico'>" . $registro['contenido'] . "</td></tr>"; //En este caso solo se muestran los mensajes públicos
+            echo "<div class='msg-header'>Escrito por: " . $registro['autor'] . " y enviado el dia " . $registro['fecha'] . "</div>"; //Cabecero con los datos del usuaruio fecha de envio
+            echo "<div class='msg-publico'>" . $registro['contenido'] . "</div>"; //En este caso solo se muestran los mensajes públicos
         }
-        echo "</table>"; 
         
     } else { //En el caso de no existir elementos, lo indicamos
-        echo "<tr class='centrado'><td colspan='2'>No existen mensajes que visualizar</td></tr></table>"; //Mensaje de feedback
+        echo "<div class='centrado'><td colspan='2'>No existen mensajes que visualizar</div>"; //Mensaje de feedback
     }
 }
 
-
-/* FUNCIONES DE VALIDACION */
-/***************************/
+// ***********************
+// FUNCIONES DE VALIDACION
+// ***********************
 
 /**
  * Funcion para comprobar si el usuario se encuentra duplicado
